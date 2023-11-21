@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.trans {
+  transition: .3s;
+}
+
+.hover-bg:hover {
+  background-image: radial-gradient(#3e337c57, #342e56);
+}
+
+.aboutimg {
+  background: url('../src/Assets/Images/about.jpg');
+  background-size: 100%;
+}
+
+.slick-prev,
+.slick-next {
+  display: none !important;
+}
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.review-main .slick-list {
+  margin: 0 -10px;
+}
+
+.review-main .slick-slide>div {
+  padding: 0 10px;
+}
+
+.sweep-main input::-webkit-outer-spin-button,
+.sweep-main input::-webkit-inner-spin-button {
+  -webkit-appearance: button;
+  margin: 0;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.react-datepicker-wrapper input {
+  padding: 6px 15px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #3e337c;
+  font-weight: 500;
+  outline: none;
+  width: 100%;
+}
