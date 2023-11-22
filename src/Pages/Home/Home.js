@@ -76,7 +76,7 @@ const Home = () => {
             <div className="bg-[#7b7492] mt-[-8px]">
                 <div className="max-w-[1300px] mx-auto px-[20px] pt-[40px]">
                     <h2 className="text-[#f7f4ff] font-semibold text-lg md:text-[22px] lg:text-[24px] text-center">
-                        ABOUT ATOMBERG
+                        ABOUT MDN
                     </h2>
                     <img
                         src={LogoMDN}
@@ -85,7 +85,7 @@ const Home = () => {
                     />
                     <div className="bg-[#c6c0db] rounded-[60px_60px_0_0] max-w-[700px] mx-auto p-[20px] lg:p-[40px] text-center">
                         <p className="text-[#3e337c] font-medium">
-                            At Atomberg, every innovation begins with questions. The right
+                            At MDN, every innovation begins with questions. The right
                             questions. What comforts do our customers look for in their busy
                             day? How can we make the day easier for them? Such questions help us
                             focus on the things that really matter. Things like the latest
@@ -99,7 +99,7 @@ const Home = () => {
             </div>
             <div className="pt-[40px] bg-[#a9a4ba]">
                 <h2 className="text-[#3e337c] font-semibold text-lg md:text-[22px] lg:text-[24px] text-center mb-5">
-                    ATOMBERG'S TOP PRODUCT
+                    MDN'S TOP PRODUCT
                 </h2>
                 <div className="flex md:flex-row flex-col items-center">
                     <div className="bg-[#c6c0db] md:w-1/2 rounded-tr-[80px] md:order-1 order-2">

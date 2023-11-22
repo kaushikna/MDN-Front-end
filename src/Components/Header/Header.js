@@ -45,10 +45,10 @@ const Header = () => {
                                 <ProductModel />
                             </div>
                         </div> */}
-                            <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Service and Warranty</a>
-                            <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Testimonials</a>
+                            {/* <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Service and Warranty</a>
+                            <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Testimonials</a> */}
                             <a href='/add-product' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Add Product</a>
-                            <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Order</a>
+                            {/* <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Order</a> */}
                             <a href='/order-manage' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Order Manage</a>
                             <a href='/customer-inquiry' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Customer Inqury</a>
 
