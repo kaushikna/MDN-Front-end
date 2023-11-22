@@ -150,7 +150,7 @@ const Home = () => {
                             <h3 className="text-base md:text-[18px] lg:text-[22px] text-[#3e337c] font-semibold">
                                 MIXER GRINDER
                             </h3>
-                            <span className="text-[#c4403e] font-medium">Atomberg MG1</span>
+                            <span className="text-[#c4403e] font-medium">MDNMG1</span>
                             <p className="text-[#3e337c]">
                                 Why not get India's first Mixer Grinder with Inverter
                                 Technology?
