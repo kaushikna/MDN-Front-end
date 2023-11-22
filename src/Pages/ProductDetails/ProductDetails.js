@@ -137,7 +137,7 @@ const TechnicalDetail = [
     },
     {
         head: 'Manufacturer',
-        name: 'Atomberg Technologies'
+        name: 'MDNTechnologies'
     },
     {
         head: 'Country of Origin',
@@ -155,15 +155,15 @@ const TechnicalDetail = [
 const AdditionalDetail = [
     {
         head: 'Manufacturer',
-        name: 'Atomberg Technologies, Atomberg Technologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@atomberg.com/08448449442'
+        name: 'MDNTechnologies, MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@atomberg.com/08448449442'
     },
     {
         head: 'Packer',
-        name: 'Atomberg Technologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@atomberg.com/08448449442'
+        name: 'MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@atomberg.com/08448449442'
     },
     {
         head: 'Importer',
-        name: '	Atomberg Technologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@atomberg.com/08448449442'
+        name: '	MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@atomberg.com/08448449442'
     },
     {
         head: 'Item Weight',
@@ -202,8 +202,8 @@ const ProductDetails = () => {
                             <img src={Fan} alt='Fan' />
                         </div>
                         <div className='mb-[30px]'>
-                            <h2 className='text-[#3e337c] font-bold lg:text-[36px] sm:text-[30px] text-[26px]'>Atomberg Efficio Ceiling Fan</h2>
-                            <p className='text-[#3e337c] sm:text-[16px] text-[14px] font-medium mt-3'>Atomberg Efficio Energy Efficient Ceiling Fan with BLDC Motor and Remote</p>
+                            <h2 className='text-[#3e337c] font-bold lg:text-[36px] sm:text-[30px] text-[26px]'>MDNEfficio Ceiling Fan</h2>
+                            <p className='text-[#3e337c] sm:text-[16px] text-[14px] font-medium mt-3'>MDNEfficio Energy Efficient Ceiling Fan with BLDC Motor and Remote</p>
                             <div className='flex items-start mt-[20px]'>
                                 <h3 className='line-through text-[#7b7492] font-semibold text-[26px]'>₹5,190</h3>
                                 <div className='ml-[20px]'>
@@ -309,7 +309,7 @@ const ProductDetails = () => {
             </div>
             {/* <div className=' bg-[#7b7492]'>
                 <div className="max-w-[1300px] mx-auto px-[20px] py-[60px]">
-                    <h1 className='text-[#fff] font-semibold text-lg md:text-[22px] lg:text-[24px] text-center'>WHY SHOULD YOU BUY FROM THE ATOMBERG WEBSITE ?</h1>
+                    <h1 className='text-[#fff] font-semibold text-lg md:text-[22px] lg:text-[24px] text-center'>WHY SHOULD YOU BUY FROM THE MDNWEBSITE ?</h1>
                     <div className='mt-[60px]'>
                         <div className='flex justify-center'>
                             <img src={priceMatch} alt='price-match' />

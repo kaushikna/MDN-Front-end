@@ -10,8 +10,8 @@ const Footer = () => {
                     <div className='xl:flex-row flex-col flex gap-[40px]'>
                         <div className='xl:max-w-[390px]'>
                             <img className='max-w-[80px]' src={Logo} alt='logo' />
-                            <p className='lg:text-[14px] text-[12px] max-w-[400px] mt-[20px]'>Atomberg Technologies pioneer manufacturing of smart and energy-efficient home appliances powered by the BLDC motor.</p>
-                            <p className='lg:text-[14px] text-[12px] mt-4'>Name of Company:- <span className='font-semibold'>ATOMBERG TECHNOLOGIES PRIVATE LIMITED</span></p>
+                            <p className='lg:text-[14px] text-[12px] max-w-[400px] mt-[20px]'>MDNTechnologies pioneer manufacturing of smart and energy-efficient home appliances powered by the BLDC motor.</p>
+                            <p className='lg:text-[14px] text-[12px] mt-4'>Name of Company:- <span className='font-semibold'>MDNTECHNOLOGIES PRIVATE LIMITED</span></p>
                             <p className='text-[12px] mt-1'>Address of its registered office:-</p>
                             <p className='lg:text-[14px] text-[12px] italic font-semibold mt-1'>Office No. 1205, 12th Floor, Rupa Solitaire, Millennium Business Park,Thane-Belapur Road, Mahape, Navi Mumbai- 400710</p>
                             <p className='text-[12px] mt-1'>Corporate office address:-</p>

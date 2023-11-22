@@ -60,7 +60,7 @@ const Checkout = () => {
                                     </div>
                                     <div className='flex items-center gap-2 mt-[30px]'>
                                         <input type='checkbox' id='check' className='cursor-pointer w-[18px] h-[18px]' />
-                                        <label for='check' className='text-[#fff] text-[14px] font-normal select-none cursor-pointer'>By clicking this you allow communication from Atomberg technologies</label>
+                                        <label for='check' className='text-[#fff] text-[14px] font-normal select-none cursor-pointer'>By clicking this you allow communication from MDNtechnologies</label>
                                     </div>
                                     <button className='rounded-full inline-flex font-semibold text-[14px] items-center justify-center p-[10px_40px] bg-[#c6c0db] text-[#3e337c] mt-[40px]'>
                                         Deliver here
@@ -81,7 +81,7 @@ const Checkout = () => {
                             </div>
                             <div className='flex items-center gap-2 mt-[20px]'>
                                 <input type='checkbox' id='check1' className='cursor-pointer w-[18px] h-[18px]' />
-                                <label for='check1' className='text-[#3e337c] text-[14px] font-medium select-none cursor-pointer'>By clicking this you allow communication from Atomberg technologies</label>
+                                <label for='check1' className='text-[#3e337c] text-[14px] font-medium select-none cursor-pointer'>By clicking this you allow communication from MDNtechnologies</label>
                             </div>
                             <div className='bg-[#7b7492] sm:p-[20px] p-[20px_12px] rounded-xl mt-[20px]'>
                                 <div className='flex items-center gap-2'>
@@ -92,7 +92,7 @@ const Checkout = () => {
                                 <button className='text-[#3e337c] font-medium bg-[#c6c0db] p-[9px_20px] rounded-[20px] text-[14px] mt-[20px] w-full'>Make online Payment</button>
                                 <div className='flex items-center gap-2 mt-[20px]'>
                                     <input type='checkbox' id='check3' className='cursor-pointer w-[18px] h-[18px]' />
-                                    <label for='check3' className='text-[#fff] text-[14px] font-normal select-none cursor-pointer'>By clicking this you allow communication from Atomberg technologies</label>
+                                    <label for='check3' className='text-[#fff] text-[14px] font-normal select-none cursor-pointer'>By clicking this you allow communication from MDNtechnologies</label>
                                 </div>
                             </div>
                             <div className='flex items-center gap-[32px] mt-8 flex-wrap justify-between bg-[#fff] rounded-xl p-[20px]'>
