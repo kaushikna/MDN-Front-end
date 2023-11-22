@@ -58,7 +58,7 @@ const Header = () => {
                                 <ProductModel />
                             </div>
                         </div> */}
-              <a
+              {/* <a
                 href="/"
                 className="p-[28px_0] xl:text-[16px] text-[14px] font-semibold text-[#3e337c] trans"
               >
@@ -69,19 +69,19 @@ const Header = () => {
                 className="p-[28px_0] xl:text-[16px] text-[14px] font-semibold text-[#3e337c] trans"
               >
                 Testimonials
-              </a>
+              </a> */}
               <a
                 href="/add-product"
                 className="p-[28px_0] xl:text-[16px] text-[14px] font-semibold text-[#3e337c] trans"
               >
                 Add Product
               </a>
-              <a
+              {/* <a
                 href="/"
                 className="p-[28px_0] xl:text-[16px] text-[14px] font-semibold text-[#3e337c] trans"
               >
                 Order
-              </a>
+              </a> */}
               <a
                 href="/order-manage"
                 className="p-[28px_0] xl:text-[16px] text-[14px] font-semibold text-[#3e337c] trans"
