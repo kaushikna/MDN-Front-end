@@ -73,7 +73,7 @@ const AboutUs = () => {
                             </div>
                             <div>
                                 <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] mb-[24px] leading-[28px] '>Every household appliance we create blends mindful design, energy-efficiency and next-gen smart tech.</p>
-                                <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] leading-[28px] '>We're relentless innovators. We're startup energy blended with big dreams. We think, dream and obsess over customer experience. We are atomberg.</p>
+                                <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] leading-[28px] '>We're relentless innovators. We're startup energy blended with big dreams. We think, dream and obsess over customer experience. We are MDN.</p>
                             </div>
                         </div>
                     </div>

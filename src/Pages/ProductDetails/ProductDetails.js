@@ -37,7 +37,7 @@ const ChooseData = [
 const TechnicalDetail = [
     {
         head: 'Brand',
-        name: 'atomberg'
+        name: 'MDN'
     },
     {
         head: 'Colour',
@@ -155,15 +155,15 @@ const TechnicalDetail = [
 const AdditionalDetail = [
     {
         head: 'Manufacturer',
-        name: 'MDNTechnologies, MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@atomberg.com/08448449442'
+        name: 'MDNTechnologies, MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
     },
     {
         head: 'Packer',
-        name: 'MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@atomberg.com/08448449442'
+        name: 'MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
     },
     {
         head: 'Importer',
-        name: '	MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@atomberg.com/08448449442'
+        name: '	MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
     },
     {
         head: 'Item Weight',

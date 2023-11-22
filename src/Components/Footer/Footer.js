@@ -83,10 +83,10 @@ const Footer = () => {
                                     <li className='mb-3'><a href='#' className='lg:text-[14px] text-[12px] hover:underline'>For expert help and customer complaints, call: 844 844 9442</a></li>
                                     <li className='mb-3'><a href='#' className='lg:text-[14px] text-[12px] hover:underline'>Timings: 9.30 am to 6.30 pm on all days except public holidays</a></li>
                                     <li className='mb-3'><a href='#' className='lg:text-[14px] text-[12px] hover:underline'>Whatsapp: 809-745-4422</a></li>
-                                    <li className='mb-3'><a href='#' className='lg:text-[14px] text-[12px] hover:underline'>Email: support@atomberg.com</a></li>
-                                    <li className='mb-3'><a href='#' className='lg:text-[14px] text-[12px] hover:underline'>For sales assistance & partnership: salesenquiry@atomberg.com</a></li>
-                                    <li className='mb-3'><a href='#' className='lg:text-[14px] text-[12px] hover:underline'>For after sales support (Service complaint registration): support@atomberg.com</a></li>
-                                    <li className='mb-3'><a href='#' className='lg:text-[14px] text-[12px] hover:underline'>For all other queries: salesenquiry@atomberg.com</a></li>
+                                    <li className='mb-3'><a href='#' className='lg:text-[14px] text-[12px] hover:underline'>Email: support@MDN.com</a></li>
+                                    <li className='mb-3'><a href='#' className='lg:text-[14px] text-[12px] hover:underline'>For sales assistance & partnership: salesenquiry@MDN.com</a></li>
+                                    <li className='mb-3'><a href='#' className='lg:text-[14px] text-[12px] hover:underline'>For after sales support (Service complaint registration): support@MDN.com</a></li>
+                                    <li className='mb-3'><a href='#' className='lg:text-[14px] text-[12px] hover:underline'>For all other queries: salesenquiry@MDN.com</a></li>
                                 </ul>
                             </div>
                         </div>
