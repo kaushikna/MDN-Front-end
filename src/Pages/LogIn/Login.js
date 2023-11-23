@@ -16,8 +16,8 @@ const Login = () => {
                     </div>
                     {forgot ?
                         <div className='md:w-[50%] sm:p-[30px] p-[30px_16px]  border-l-[1px] border-l-[#f1f1f1]'>
-                            <h1 className='text-[#3e337c] text-center sm:text-[34px] text-[22px] font-semibold'>Reset your password</h1>
-                            <p className='sm:text-[14px] text-[12px] text-center'>We will send you an email to reset your password.</p>
+                            <h1 className='text-[#3e337c] text-center sm:text-[34px] text-[22px] font-semibold'>Forgot Password</h1>
+                            {/* <p className='sm:text-[14px] text-[12px] text-center'>We will send you an email to reset your password.</p> */}
                             <div className='mt-[40px]'>
                                 <label className='text-[#3e337c] text-[14px] block font-medium'>Email</label>
                                 <input type='email' className='text-[14px] mt-2 outline-none border-[1px] border-[#e0daff] rounded-sm w-full p-[8px_10px]' />

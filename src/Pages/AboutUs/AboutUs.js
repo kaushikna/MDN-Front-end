@@ -41,7 +41,7 @@ const community = [
         name: '3000+ retail partners A91 and IDFC as backers',
     },
     {
-        name: '1 million happy homes with MDNfans.',
+        name: '1 million happy homes with MDN fans.',
     }
 ]
 
@@ -68,7 +68,7 @@ const AboutUs = () => {
                     <div className='max-w-[1300px] mx-auto px-[20px]'>
                         <div className='grid sm:grid-cols-2 gap-[30px] p-[50px_0]'>
                             <div>
-                                <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] mb-[24px] leading-[28px] '>MDNis in the business of revolutionizing India's home appliances, by solving one problem at a time.</p>
+                                <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] mb-[24px] leading-[28px] '>MDN is in the business of revolutionizing India's home appliances, by solving one problem at a time.</p>
                                 <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] leading-[28px] '>Our secret weapon? Asking the right questions. Pointed questions about how we can make our customers' daily lives easier. Questions that require granular answers and thoughtful product design.</p>
                             </div>
                             <div>
@@ -82,7 +82,7 @@ const AboutUs = () => {
                     <div className='max-w-[1300px] mx-auto px-[20px]'>
                         <div className='grid sm:grid-cols-2 gap-[30px] p-[50px_0]'>
                             <div>
-                                <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] mb-[24px] leading-[28px] '>MDNTechnologies origin story begins with two IIT-Bombay graduates:Manoj Meena and Sibabrata Das, and some serious hi-tech.</p>
+                                <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] mb-[24px] leading-[28px] '>MDN Technologies origin story begins with two IIT-Bombay graduates:Manoj Meena and Sibabrata Das, and some serious hi-tech.</p>
                                 <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] leading-[28px] '>The first few years were a blur of high-end technical products that went to prestigious clients like the Defense Research and Development Organisation, Bhabha Atomic Research Center and IIT-Bombay.</p>
                             </div>
                             <div>

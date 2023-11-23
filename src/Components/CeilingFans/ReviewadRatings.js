@@ -59,7 +59,7 @@ const ReviewadRatings = () => {
             <div className="max-w-[1300px] mx-auto px-[20px]">
                 <div>
                     <h3 className='text-[#3e337c] font-semibold text-lg md:text-[22px] lg:text-[24px] text-center'>REVIEWS AND RATINGS</h3>
-                    <p className='text-[#3e337c] text-[14px] mt-[20px] text-center max-w-[800px] mx-auto'>More than 90% of our customers who have bought MDNproducts have loved them. Do take a look at what some of them have to say:</p>
+                    <p className='text-[#3e337c] text-[14px] mt-[20px] text-center max-w-[800px] mx-auto'>More than 90% of our customers who have bought MDN products have loved them. Do take a look at what some of them have to say:</p>
                     <h2 className='text-[#3e337c] text-[50px] font-bold text-center mt-[20px]'>4.8<span className='text-[28px]'>/5</span></h2>
                     <div className='flex items-center justify-center gap-[2px]'>
                         <IoMdStar className='text-[#f2bb44] text-[20px]' />

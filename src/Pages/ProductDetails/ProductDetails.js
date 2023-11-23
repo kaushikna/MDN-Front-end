@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import product1 from '../../Assets/Images/ProductImages/product1.png';
 import product2 from '../../Assets/Images/ProductImages/product2.png';
 import product3 from '../../Assets/Images/ProductImages/product3.png';
@@ -18,6 +18,8 @@ import priceMatch from '../../Assets/Images/ProductDetailImages/price-match.png'
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import ReviewadRatings from '../../Components/CeilingFans/ReviewadRatings';
+import { MdDelete, MdModeEdit } from "react-icons/md";
+import { Menu, Transition, Dialog } from '@headlessui/react';
 
 const ChooseData = [
     {
@@ -137,7 +139,7 @@ const TechnicalDetail = [
     },
     {
         head: 'Manufacturer',
-        name: 'MDNTechnologies'
+        name: 'MDN Technologies'
     },
     {
         head: 'Country of Origin',
@@ -155,15 +157,15 @@ const TechnicalDetail = [
 const AdditionalDetail = [
     {
         head: 'Manufacturer',
-        name: 'MDNTechnologies, MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
+        name: 'MDN Technologies, MDN Technologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
     },
     {
         head: 'Packer',
-        name: 'MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
+        name: 'MDN Technologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
     },
     {
         head: 'Importer',
-        name: '	MDNTechnologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
+        name: '	MDN Technologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
     },
     {
         head: 'Item Weight',
@@ -188,6 +190,8 @@ const AdditionalDetail = [
 ]
 
 const ProductDetails = () => {
+    const [open, setOpen] = useState(false);
+    const [active, setActive] = useState(false);
     return (
         <div>
             <Header />
@@ -200,10 +204,101 @@ const ProductDetails = () => {
                     <div className='grid lg:grid-cols-2 gap-[30px] mt-[30px]'>
                         <div>
                             <img src={Fan} alt='Fan' />
+                            <div>
+                                <div className='w-[90px] h-[90px] border-[1px] border-[#dbdbdb] rounded-md relative'>
+                                    <img src={Fan} alt='Fan' className='rounded-md' />
+                                    <button onClick={() => setOpen(true)} className='bg-[#eeeeee] text-[#3e337c] rounded-full w-[24px] h-[24px] flex justify-center items-center absolute top-[-14px] left-[-13px]'>
+                                        <MdModeEdit />
+                                    </button>
+                                    <button onClick={() => setActive(true)} className='bg-[#eeeeee] text-[#3e337c] rounded-full w-[24px] h-[24px] flex justify-center items-center absolute top-[-14px] right-[-13px]'>
+                                        <MdDelete />
+                                    </button>
+                                    <Transition.Root show={open} as={Fragment}>
+                                        <Dialog as="div" className="relative z-10" onClose={setOpen}>
+                                            <Transition.Child
+                                                as={Fragment}
+                                                enter="ease-out duration-300"
+                                                enterFrom="opacity-0"
+                                                enterTo="opacity-100"
+                                                leave="ease-in duration-200"
+                                                leaveFrom="opacity-100"
+                                                leaveTo="opacity-0"
+                                            >
+                                                <div className="fixed inset-0 bg-[#000] bg-opacity-75 transition-opacity" />
+                                            </Transition.Child>
+
+                                            <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                                                <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                                                    <Transition.Child
+                                                        as={Fragment}
+                                                        enter="ease-out duration-300"
+                                                        enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                        enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                                        leave="ease-in duration-200"
+                                                        leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                                        leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                    >
+                                                        <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg p-[20px]">
+                                                            <div>
+                                                                <h3 className='text-[#3e337c] font-bold text-center text-[28px]'>Edit Product</h3>
+                                                                <input type='file' placeholder='Model' className='text-[14px] w-full border-[#3e337c] text-[#3e337c] border-[1px] rounded-md p-[8px_12px] outline-none mt-[30px]' />
+                                                                <div class="flex gap-[20px] mt-[40px] sm:flex-nowrap flex-wrap justify-center">
+                                                                    <button onClick={() => setOpen(false)} class="bg-[#c6c0db] text-[#f8f6ff] rounded-lg sm:w-[120px] p-[10px_20px] uppercase font-semibold">Cancel</button>
+                                                                    <button onClick={() => setOpen(false)} class="bg-[#3e337c] text-[#f8f6ff] rounded-lg sm:w-[120px] text-center p-[10px_20px] uppercase font-semibold">OK</button>
+                                                                </div>
+                                                            </div>
+                                                        </Dialog.Panel>
+                                                    </Transition.Child>
+                                                </div>
+                                            </div>
+                                        </Dialog>
+                                    </Transition.Root>
+                                    <Transition.Root show={active} as={Fragment}>
+                                        <Dialog as="div" className="relative z-10" onClose={setActive}>
+                                            <Transition.Child
+                                                as={Fragment}
+                                                enter="ease-out duration-300"
+                                                enterFrom="opacity-0"
+                                                enterTo="opacity-100"
+                                                leave="ease-in duration-200"
+                                                leaveFrom="opacity-100"
+                                                leaveTo="opacity-0"
+                                            >
+                                                <div className="fixed inset-0 bg-[#000] bg-opacity-75 transition-opacity" />
+                                            </Transition.Child>
+
+                                            <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                                                <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                                                    <Transition.Child
+                                                        as={Fragment}
+                                                        enter="ease-out duration-300"
+                                                        enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                        enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                                        leave="ease-in duration-200"
+                                                        leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                                        leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                    >
+                                                        <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg p-[20px]">
+                                                            <div>
+                                                                <h3 className='text-[#3e337c] font-bold text-center text-[28px]'>Delete</h3>
+                                                                <p className='text-[#3e337c] text-[16px] text-center font-medium mt-3'>Are you sure you want to delete Image?</p>
+                                                                <div class="flex gap-[20px] mt-[40px] sm:flex-nowrap flex-wrap justify-center">
+                                                                    <button onClick={() => setActive(false)} class="bg-[#c6c0db] text-[#f8f6ff] rounded-lg sm:w-[120px] p-[10px_20px] uppercase font-semibold">Cancel</button>
+                                                                    <button onClick={() => setActive(false)} class="bg-[#3e337c] text-[#f8f6ff] rounded-lg sm:w-[120px] text-center p-[10px_20px] uppercase font-semibold">OK</button>
+                                                                </div>
+                                                            </div>
+                                                        </Dialog.Panel>
+                                                    </Transition.Child>
+                                                </div>
+                                            </div>
+                                        </Dialog>
+                                    </Transition.Root>
+                                </div>
+                            </div>
                         </div>
                         <div className='mb-[30px]'>
-                            <h2 className='text-[#3e337c] font-bold lg:text-[36px] sm:text-[30px] text-[26px]'>MDNEfficio Ceiling Fan</h2>
-                            <p className='text-[#3e337c] sm:text-[16px] text-[14px] font-medium mt-3'>MDNEfficio Energy Efficient Ceiling Fan with BLDC Motor and Remote</p>
+                            <h2 className='text-[#3e337c] font-bold lg:text-[36px] sm:text-[30px] text-[26px]'>MDN Efficio Ceiling Fan</h2>
+                            <p className='text-[#3e337c] sm:text-[16px] text-[14px] font-medium mt-3'>MDN Efficio Energy Efficient Ceiling Fan with BLDC Motor and Remote</p>
                             <div className='flex items-start mt-[20px]'>
                                 <h3 className='line-through text-[#7b7492] font-semibold text-[26px]'>₹5,190</h3>
                                 <div className='ml-[20px]'>
@@ -309,7 +404,7 @@ const ProductDetails = () => {
             </div>
             {/* <div className=' bg-[#7b7492]'>
                 <div className="max-w-[1300px] mx-auto px-[20px] py-[60px]">
-                    <h1 className='text-[#fff] font-semibold text-lg md:text-[22px] lg:text-[24px] text-center'>WHY SHOULD YOU BUY FROM THE MDNWEBSITE ?</h1>
+                    <h1 className='text-[#fff] font-semibold text-lg md:text-[22px] lg:text-[24px] text-center'>WHY SHOULD YOU BUY FROM THE MDN WEBSITE ?</h1>
                     <div className='mt-[60px]'>
                         <div className='flex justify-center'>
                             <img src={priceMatch} alt='price-match' />

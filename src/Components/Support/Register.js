@@ -69,7 +69,7 @@ const Register = () => {
                         <option>Flipkart</option>
                         <option>Pepperfry</option>
                         <option>PayTm</option>
-                        <option>MDNWebsite</option>
+                        <option>MDN Website</option>
                         <option>Snapdeal</option>
                         <option>Dealer/Retail shop/Channel partner</option>
                         <option>BSES</option>

@@ -14,6 +14,7 @@ import OrderManage from './Pages/OrderManage/OrderManage';
 import CustomerInquiry from './Pages/CustomerInquiry/CustomerInquiry';
 import MyOrders from './Pages/MyOrders/MyOrders';
 import EditProduct from './Pages/EditProduct/EditProduct';
+import ResetPassword from './Pages/ResetPassword/ResetPassword';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/reset-password' element={<ResetPassword />} />
           <Route path='/product' element={<Product />} />
           <Route path='/about' element={<AboutUs />} />
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
