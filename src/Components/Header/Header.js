@@ -30,6 +30,11 @@ const Header = () => {
     const [active, setActive] = useState(false);
     // const [sidebar, setSidebar] = useState(false)
 
+   const logOutHandler=()=>{
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    }
+
     return (
         <>
             <div className='shadow-[rgb(100_100_111/12%)_0px_1px_4px_0px]'>
@@ -254,7 +259,7 @@ const Header = () => {
                                             <p className='text-[#3e337c] text-[16px] text-center font-medium mt-3'>Are you sure you want to log out?</p>
                                             <div class="flex gap-[20px] mt-[40px] sm:flex-nowrap flex-wrap justify-center">
                                                 <button onClick={() => setOpen(false)} class="bg-[#c6c0db] text-[#f8f6ff] rounded-lg sm:w-[120px] p-[10px_20px] uppercase font-semibold">Cancel</button>
-                                                <a href='/login' class="bg-[#3e337c] text-[#f8f6ff] rounded-lg sm:w-[120px] text-center p-[10px_20px] uppercase font-semibold">OK</a>
+                                                <a href='/login' class="bg-[#3e337c] text-[#f8f6ff] rounded-lg sm:w-[120px] text-center p-[10px_20px] uppercase font-semibold" onClick={()=> logOutHandler()}>OK</a>
                                             </div>
                                         </div>
                                     </Dialog.Panel>

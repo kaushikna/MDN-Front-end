@@ -15,11 +15,13 @@ import CustomerInquiry from './Pages/CustomerInquiry/CustomerInquiry';
 import MyOrders from './Pages/MyOrders/MyOrders';
 import EditProduct from './Pages/EditProduct/EditProduct';
 import ResetPassword from './Pages/ResetPassword/ResetPassword';
+import RoutesLayout from './Routes';
 
 function App() {
   return (
     <div>
-      <Router>
+     <RoutesLayout />
+      {/* <Router>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
@@ -37,7 +39,7 @@ function App() {
           <Route path='/myorders' element={<MyOrders />} />
           <Route path='/edit-product' element={<EditProduct />} />
         </Routes>
-      </Router>
+      </Router> */}
     </div>
   );
 }
