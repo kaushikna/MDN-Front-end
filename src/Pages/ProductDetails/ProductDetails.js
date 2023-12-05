@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import product1 from '../../Assets/Images/ProductImages/product1.png';
 import product2 from '../../Assets/Images/ProductImages/product2.png';
 import product3 from '../../Assets/Images/ProductImages/product3.png';
@@ -20,6 +20,14 @@ import Footer from '../../Components/Footer/Footer';
 import ReviewadRatings from '../../Components/CeilingFans/ReviewadRatings';
 import { MdDelete, MdModeEdit } from "react-icons/md";
 import { Menu, Transition, Dialog } from '@headlessui/react';
+import { AuthAPI } from '../../API';
+import toast from 'react-hot-toast';
+import { useParams, useLocation } from 'react-router-dom';
+import WithAppContext from '../../Helper/Context/app.ContextHoc';
+import { capitalize } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+const imageURL = process.env.REACT_APP_IMAGE_URL;
 
 const ChooseData = [
     {
@@ -36,373 +44,324 @@ const ChooseData = [
     }
 ]
 
-const TechnicalDetail = [
-    {
-        head: 'Brand',
-        name: 'MDN'
-    },
-    {
-        head: 'Colour',
-        name: 'Marble White'
-    },
-    {
-        head: 'Electric fan design',
-        name: 'Ceiling Fan'
-    },
-    {
-        head: 'Power Source',
-        name: 'Corded Electric'
-    },
-    {
-        head: 'Style',
-        name: 'Aris Starlight'
-    },
-    {
-        head: 'Product Dimensions',
-        name: '62.5D x 33.5W x 22.8H Centimeters'
-    },
-    {
-        head: 'Room Type',
-        name: 'Bedroom, Living Room, Dining Room'
-    },
-    {
-        head: 'Special Feature',
-        name: 'Remote Controlled, LED Light, Inverter Compatible'
-    },
-    {
-        head: 'Recommended Uses For Product',
-        name: 'Indoor'
-    },
-    {
-        head: 'Wattage',
-        name: '39 Watts'
-    },
-    {
-        head: 'Finish Type',
-        name: 'Glossy'
-    },
-    {
-        head: 'Number of Blades',
-        name: '3'
-    },
-    {
-        head: 'Air Flow Capacity',
-        name: '245 Cubic Metres per Minute'
-    },
-    {
-        head: 'Speed',
-        name: '280 RPM'
-    },
-    {
-        head: 'Voltage',
-        name: '220 Volts'
-    },
-    {
-        head: 'Collection Name',
-        name: 'Home'
-    },
-    {
-        head: 'Switch Type',
-        name: 'remote'
-    },
-    {
-        head: 'Item Weight',
-        name: '5.1 Kilograms'
-    },
-    {
-        head: 'Included Components',
-        name: '1 Blade set, 1 remote,1 motor box, 2 canopies, 1 downrod, 1 shackle kit and warranty card'
-    },
-    {
-        head: 'Indoor/Outdoor Usage',
-        name: 'Indoor'
-    },
-    {
-        head: 'Model Name',
-        name: 'Aris Starlight'
-    },
-    {
-        head: 'Specification Met',
-        name: 'star rated'
-    },
-    {
-        head: 'Control Method',
-        name: 'Remote'
-    },
-    {
-        head: 'Light Type',
-        name: 'LED'
-    },
-    {
-        head: 'Blade Material',
-        name: 'Acrylonitrile Butadiene Styrene (ABS)'
-    },
-    {
-        head: 'Manufacturer',
-        name: 'MDN Technologies'
-    },
-    {
-        head: 'Country of Origin',
-        name: 'India'
-    },
-    {
-        head: 'Item model number',
-        name: 'Aris Starlight - Marble White'
-    },
-    {
-        head: 'ASIN',
-        name: 'B0BZ4RSJGG'
-    },
-]
-const AdditionalDetail = [
-    {
-        head: 'Manufacturer',
-        name: 'MDN Technologies, MDN Technologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
-    },
-    {
-        head: 'Packer',
-        name: 'MDN Technologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
-    },
-    {
-        head: 'Importer',
-        name: '	MDN Technologies Pvt Ltd,Mind Space Shelters LLP/ Vithai Developers LLP, Gat No. 51-59, Village Bhamboli, Chakan, Pune, Maharashtra-410507. Customer Care: support@MDN.com/08448449442'
-    },
-    {
-        head: 'Item Weight',
-        name: '	5 kg 100 g'
-    },
-    {
-        head: 'Net Quantity',
-        name: '1 Count'
-    },
-    {
-        head: 'Included Components	',
-        name: '1 Blade set, 1 remote,1 motor box, 2 canopies, 1 downrod, 1 shackle kit and warranty card'
-    },
-    {
-        head: 'Generic Name	',
-        name: 'Ceiling Fan'
-    },
-    {
-        head: 'Best Sellers Rank',
-        name: '#13,174 in Home & Kitchen (See Top 100 in Home & Kitchen) #76 in Ceiling Fans'
-    },
-]
-
-const ProductDetails = () => {
+const ProductDetails = (props) => {
+    const { context } = props
+    const { state } = useLocation();
+    const { addToCart } = context
     const [open, setOpen] = useState(false);
     const [active, setActive] = useState(false);
+    const { product_id } = useParams()
+    const [product, setProduct] = useState({})
+    const [productImages, setProductImages] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [additionalInformation, setAdditionalInformation] = useState([])
+    const [technicalInformation, setTechnicalInformation] = useState([])
+    const [selectedVariantProduct, setSelectedVariantProduct] = useState('')
+    const [selectVariantProductImage, setSelectVariantProductImage] = useState()
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isLoading) {
+            Object.keys(product?.additional_information).forEach(function (key, index) {
+                const value = product?.additional_information[key]
+                additionalInformation.push({
+                    title: key,
+                    details: value
+                })
+                if (index === Object.keys(product?.additional_information).length - 1) {
+                    setAdditionalInformation([...additionalInformation])
+                }
+            })
+
+            Object.keys(product?.technical_information).forEach(function (key, index) {
+                const value = product?.technical_information[key]
+                technicalInformation.push({
+                    title: key,
+                    details: value
+                })
+                if (index === Object.keys(product?.technical_information).length - 1) {
+                    setTechnicalInformation([...technicalInformation])
+                }
+            })
+            clickHandler(product.productVariants[0])
+        }
+    }, [isLoading])
+
+    const getProductById = async () => {
+        try {
+            const response = await AuthAPI(`/product/${product_id}`, {
+                method: "GET",
+                data: product_id
+            });
+            if (response?.status === 200) {
+                toast.success(response.message);
+                setIsLoading(false)
+                setProduct(response.data[0])
+                const images = []
+                response.data?.[0]?.productVariants?.forEach(elem => {
+                    if (elem?.images?.length) {
+                        images.push(...elem?.images)
+                    }
+                })
+                setProductImages(images)
+            } else {
+                toast.error("Something went wrong..");
+            }
+        } catch (error) {
+            toast.error("Something went to wrong...");
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        getProductById()
+    }, [])
+
+    const clickHandler = (val) => {
+        setSelectedVariantProduct(val)
+        setSelectVariantProductImage(val?.images?.[0])
+    }
+
+    const addToCartHandler = () => {
+        const payload = { ...product, selectedVariant: { ...selectedVariantProduct } }
+        addToCart(payload)
+    }
+
+
+    const goToCheckOut = () => {
+        addToCartHandler()
+        navigate("/checkout")
+    }
+
     return (
-        <div>
-            <Header />
-            <div>
-                <div className='py-4 px-[20px] max-w-[1300px] mx-auto'>
-                    <div className='text-[#3e337c] text-[14px] flex items-center'>
-                        <a href='/' className='font-medium underline'>Home</a><span className='block mx-2'>/</span><a href='/ceiling-fans' className='font-medium underline'>Ceiling Fans</a><span className='block mx-2'>/</span><p>Efficio Ceiling Fan
-                        </p>
-                    </div>
-                    <div className='grid lg:grid-cols-2 gap-[30px] mt-[30px]'>
-                        <div>
-                            <img src={Fan} alt='Fan' />
-                            <div>
-                                <div className='w-[90px] h-[90px] border-[1px] border-[#dbdbdb] rounded-md relative'>
-                                    <img src={Fan} alt='Fan' className='rounded-md' />
-                                    <button onClick={() => setOpen(true)} className='bg-[#eeeeee] text-[#3e337c] rounded-full w-[24px] h-[24px] flex justify-center items-center absolute top-[-14px] left-[-13px]'>
-                                        <MdModeEdit />
-                                    </button>
-                                    <button onClick={() => setActive(true)} className='bg-[#eeeeee] text-[#3e337c] rounded-full w-[24px] h-[24px] flex justify-center items-center absolute top-[-14px] right-[-13px]'>
-                                        <MdDelete />
-                                    </button>
-                                    <Transition.Root show={open} as={Fragment}>
-                                        <Dialog as="div" className="relative z-10" onClose={setOpen}>
-                                            <Transition.Child
-                                                as={Fragment}
-                                                enter="ease-out duration-300"
-                                                enterFrom="opacity-0"
-                                                enterTo="opacity-100"
-                                                leave="ease-in duration-200"
-                                                leaveFrom="opacity-100"
-                                                leaveTo="opacity-0"
-                                            >
-                                                <div className="fixed inset-0 bg-[#000] bg-opacity-75 transition-opacity" />
-                                            </Transition.Child>
-
-                                            <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                                                <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+        <>
+            {isLoading ?
+                <div>
+                    <h1>Loading...</h1>
+                </div>
+                :
+                <div>
+                    <Header />
+                    <div>
+                        <div className='py-4 px-[20px] max-w-[1300px] mx-auto'>
+                            <div className='text-[#3e337c] text-[14px] flex items-center'>
+                                <a href='/' className='font-medium underline'>Home</a><span className='block mx-2'>/</span><a href='/ceiling-fans' className='font-medium underline'>Ceiling Fans</a><span className='block mx-2'>/</span><p>Efficio Ceiling Fan
+                                </p>
+                            </div>
+                            <div className='grid lg:grid-cols-2 gap-[30px] mt-[30px]'>
+                                <div>
+                                    <img src={selectVariantProductImage ? `${imageURL}${selectVariantProductImage}` : Fan} alt='Fan' className='mb-3' />
+                                    <div>
+                                        <div className='w-[90px] h-[90px] border-[1px] border-[#dbdbdb] rounded-md relative mt-12 flex gap-4'>
+                                            {
+                                                productImages.map(elem => <img src={elem ? `${imageURL}${elem}` : Fan} alt='Fan' className='rounded-md cursor-pointer' onClick={() => setSelectVariantProductImage(elem)} />)
+                                            }
+                                            {/* <button onClick={() => setOpen(true)} className='bg-[#eeeeee] text-[#3e337c] rounded-full w-[24px] h-[24px] flex justify-center items-center absolute top-[-14px] left-[-13px]'>
+                                                <MdModeEdit />
+                                            </button>
+                                            <button onClick={() => setActive(true)} className='bg-[#eeeeee] text-[#3e337c] rounded-full w-[24px] h-[24px] flex justify-center items-center absolute top-[-14px] right-[-13px]'>
+                                                <MdDelete />
+                                            </button> */}
+                                            <Transition.Root show={open} as={Fragment}>
+                                                <Dialog as="div" className="relative z-10" onClose={setOpen}>
                                                     <Transition.Child
                                                         as={Fragment}
                                                         enter="ease-out duration-300"
-                                                        enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                                        enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                                        enterFrom="opacity-0"
+                                                        enterTo="opacity-100"
                                                         leave="ease-in duration-200"
-                                                        leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                                                        leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                        leaveFrom="opacity-100"
+                                                        leaveTo="opacity-0"
                                                     >
-                                                        <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg p-[20px]">
-                                                            <div>
-                                                                <h3 className='text-[#3e337c] font-bold text-center text-[28px]'>Edit Product</h3>
-                                                                <input type='file' placeholder='Model' className='text-[14px] w-full border-[#3e337c] text-[#3e337c] border-[1px] rounded-md p-[8px_12px] outline-none mt-[30px]' />
-                                                                <div class="flex gap-[20px] mt-[40px] sm:flex-nowrap flex-wrap justify-center">
-                                                                    <button onClick={() => setOpen(false)} class="bg-[#c6c0db] text-[#f8f6ff] rounded-lg sm:w-[120px] p-[10px_20px] uppercase font-semibold">Cancel</button>
-                                                                    <button onClick={() => setOpen(false)} class="bg-[#3e337c] text-[#f8f6ff] rounded-lg sm:w-[120px] text-center p-[10px_20px] uppercase font-semibold">OK</button>
-                                                                </div>
-                                                            </div>
-                                                        </Dialog.Panel>
+                                                        <div className="fixed inset-0 bg-[#000] bg-opacity-75 transition-opacity" />
                                                     </Transition.Child>
-                                                </div>
-                                            </div>
-                                        </Dialog>
-                                    </Transition.Root>
-                                    <Transition.Root show={active} as={Fragment}>
-                                        <Dialog as="div" className="relative z-10" onClose={setActive}>
-                                            <Transition.Child
-                                                as={Fragment}
-                                                enter="ease-out duration-300"
-                                                enterFrom="opacity-0"
-                                                enterTo="opacity-100"
-                                                leave="ease-in duration-200"
-                                                leaveFrom="opacity-100"
-                                                leaveTo="opacity-0"
-                                            >
-                                                <div className="fixed inset-0 bg-[#000] bg-opacity-75 transition-opacity" />
-                                            </Transition.Child>
 
-                                            <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                                                <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                                                    <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                                                        <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                                                            <Transition.Child
+                                                                as={Fragment}
+                                                                enter="ease-out duration-300"
+                                                                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                                                leave="ease-in duration-200"
+                                                                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                                                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                            >
+                                                                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg p-[20px]">
+                                                                    <div>
+                                                                        <h3 className='text-[#3e337c] font-bold text-center text-[28px]'>Edit Product</h3>
+                                                                        <input type='file' placeholder='Model' className='text-[14px] w-full border-[#3e337c] text-[#3e337c] border-[1px] rounded-md p-[8px_12px] outline-none mt-[30px]' />
+                                                                        <div class="flex gap-[20px] mt-[40px] sm:flex-nowrap flex-wrap justify-center">
+                                                                            <button onClick={() => setOpen(false)} class="bg-[#c6c0db] text-[#f8f6ff] rounded-lg sm:w-[120px] p-[10px_20px] uppercase font-semibold">Cancel</button>
+                                                                            <button onClick={() => setOpen(false)} class="bg-[#3e337c] text-[#f8f6ff] rounded-lg sm:w-[120px] text-center p-[10px_20px] uppercase font-semibold">OK</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </Dialog.Panel>
+                                                            </Transition.Child>
+                                                        </div>
+                                                    </div>
+                                                </Dialog>
+                                            </Transition.Root>
+                                            <Transition.Root show={active} as={Fragment}>
+                                                <Dialog as="div" className="relative z-10" onClose={setActive}>
                                                     <Transition.Child
                                                         as={Fragment}
                                                         enter="ease-out duration-300"
-                                                        enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                                        enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                                        enterFrom="opacity-0"
+                                                        enterTo="opacity-100"
                                                         leave="ease-in duration-200"
-                                                        leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                                                        leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                        leaveFrom="opacity-100"
+                                                        leaveTo="opacity-0"
                                                     >
-                                                        <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg p-[20px]">
-                                                            <div>
-                                                                <h3 className='text-[#3e337c] font-bold text-center text-[28px]'>Delete</h3>
-                                                                <p className='text-[#3e337c] text-[16px] text-center font-medium mt-3'>Are you sure you want to delete Image?</p>
-                                                                <div class="flex gap-[20px] mt-[40px] sm:flex-nowrap flex-wrap justify-center">
-                                                                    <button onClick={() => setActive(false)} class="bg-[#c6c0db] text-[#f8f6ff] rounded-lg sm:w-[120px] p-[10px_20px] uppercase font-semibold">Cancel</button>
-                                                                    <button onClick={() => setActive(false)} class="bg-[#3e337c] text-[#f8f6ff] rounded-lg sm:w-[120px] text-center p-[10px_20px] uppercase font-semibold">OK</button>
-                                                                </div>
-                                                            </div>
-                                                        </Dialog.Panel>
+                                                        <div className="fixed inset-0 bg-[#000] bg-opacity-75 transition-opacity" />
                                                     </Transition.Child>
-                                                </div>
-                                            </div>
-                                        </Dialog>
-                                    </Transition.Root>
+
+                                                    <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                                                        <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                                                            <Transition.Child
+                                                                as={Fragment}
+                                                                enter="ease-out duration-300"
+                                                                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                                                leave="ease-in duration-200"
+                                                                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                                                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                            >
+                                                                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg p-[20px]">
+                                                                    <div>
+                                                                        <h3 className='text-[#3e337c] font-bold text-center text-[28px]'>Delete</h3>
+                                                                        <p className='text-[#3e337c] text-[16px] text-center font-medium mt-3'>Are you sure you want to delete Image?</p>
+                                                                        <div class="flex gap-[20px] mt-[40px] sm:flex-nowrap flex-wrap justify-center">
+                                                                            <button onClick={() => setActive(false)} class="bg-[#c6c0db] text-[#f8f6ff] rounded-lg sm:w-[120px] p-[10px_20px] uppercase font-semibold">Cancel</button>
+                                                                            <button onClick={() => setActive(false)} class="bg-[#3e337c] text-[#f8f6ff] rounded-lg sm:w-[120px] text-center p-[10px_20px] uppercase font-semibold">OK</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </Dialog.Panel>
+                                                            </Transition.Child>
+                                                        </div>
+                                                    </div>
+                                                </Dialog>
+                                            </Transition.Root>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className='mb-[30px]'>
-                            <h2 className='text-[#3e337c] font-bold lg:text-[36px] sm:text-[30px] text-[26px]'>MDN Efficio Ceiling Fan</h2>
-                            <p className='text-[#3e337c] sm:text-[16px] text-[14px] font-medium mt-3'>MDN Efficio Energy Efficient Ceiling Fan with BLDC Motor and Remote</p>
-                            <div className='flex items-start mt-[20px]'>
-                                <h3 className='line-through text-[#7b7492] font-semibold text-[26px]'>₹5,190</h3>
-                                <div className='ml-[20px]'>
-                                    <h3 className='text-[#3e337c] font-bold text-[26px]'>₹3,299</h3>
-                                    <p className='text-[#3e337c] text-[10px]'>Inclusive of all taxes</p>
-                                </div>
-                                <h3 className='text-[#fdb913] font-semibold ml-[20px] text-[20px]'>-36%</h3>
-                            </div>
-                            <p className='flex text-[16px] text-[#3e337c] font-medium mt-3'><span className='font-bold block mr-2'>Color -</span> White</p>
-                            <div className='mt-2 flex items-center gap-3'>
-                                <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px]'>
-                                    <div className='w-[26px] h-[26px] bg-[#000] rounded-[4px] border-[#e2ddff] border-[1px]' />
-                                </button>
-                                <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px] shadow-[0_2px_6px_1px_#3e337c30]'>
-                                    <div className='w-[26px] h-[26px] bg-[#fff] rounded-[4px] border-[#e2ddff] border-[1px]' />
-                                </button>
-                                <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px]'>
-                                    <div className='w-[26px] h-[26px] bg-[#a7a18f] rounded-[4px] border-[#e2ddff] border-[1px]' />
-                                </button>
-                                <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px]'>
-                                    <div className='w-[26px] h-[26px] bg-[#70483c] rounded-[4px] border-[#e2ddff] border-[1px]' />
-                                </button>
-                                <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px]'>
-                                    <div className='w-[26px] h-[26px] bg-[#4e6e81] rounded-[4px] border-[#e2ddff] border-[1px]' />
-                                </button>
-                                <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px]'>
-                                    <div className='w-[26px] h-[26px] bg-[#6D503A] rounded-[4px] border-[#e2ddff] border-[1px]' />
-                                </button>
-                            </div>
-                            <p className='flex text-[16px] text-[#3e337c] font-medium mt-6'><span className='font-bold block mr-2'>Sweep Size -</span> 1200mm</p>
-                            <div className='mt-2 flex gap-2'>
-                                <button className='border-[#e2ddff] border-[1px] rounded-[6px] p-[6px_13px] text-[14px] text-[#3e337c] font-medium'>
-                                    900mm
-                                </button>
-                                <button className='border-[#e2ddff] border-[1px] rounded-[6px] p-[6px_13px] text-[14px] text-[#3e337c] font-medium'>
-                                    900mm
-                                </button>
-                                <button className='border-[#e2ddff] border-[1px] rounded-[6px] p-[6px_13px] text-[14px] text-[#3e337c] font-medium'>
-                                    900mm
-                                </button>
-                            </div>
-                            <div className='flex justify-between items-center mt-6'>
-                                <div className='sweep-main flex items-center'>
-                                    <p className='flex text-[16px] text-[#3e337c]  font-bold mr-2'>Sweep Size -</p>
-                                    <input type='number' defaultValue='1' className='border-[#e2ddff] border-[1px] rounded-3xl p-[8px_12px] w-[66px] outline-none text-center' />
-                                </div>
-                                <p className='font-bold text-[#3e337c]'>285 in stock</p>
-                            </div>
-                            <div className='flex gap-[20px] mt-[30px] sm:flex-nowrap flex-wrap'>
-                                <button className='bg-[#3e337c] text-[#f8f6ff] rounded-[30px] p-[10px_20px] uppercase font-semibold w-full'>Buy Now</button>
-                                <button className='bg-[#c6c0db] text-[#f8f6ff] rounded-[30px] p-[10px_20px] uppercase font-semibold w-full'>Add to Cart</button>
-                            </div>
-                            <div className='flex gap-[20px] mt-[10px] sm:flex-nowrap flex-wrap'>
+                                <div className='mb-[30px]'>
+                                    <h2 className='text-[#3e337c] font-bold lg:text-[36px] sm:text-[30px] text-[26px]'>{product.name}</h2>
+                                    <p className='text-[#3e337c] sm:text-[16px] text-[14px] font-medium mt-3'>MDN Efficio Energy Efficient Ceiling Fan with BLDC Motor and Remote</p>
+                                    <div className='flex items-start mt-[20px]'>
+                                        <h3 className='line-through text-[#7b7492] font-semibold text-[26px]'>₹5,190</h3>
+                                        <div className='ml-[20px]'>
+                                            <h3 className='text-[#3e337c] font-bold text-[26px]'>₹{product.price}</h3>
+                                            <p className='text-[#3e337c] text-[10px]'>Inclusive of all taxes</p>
+                                        </div>
+                                        <h3 className='text-[#fdb913] font-semibold ml-[20px] text-[20px]'>-36%</h3>
+                                    </div>
+                                    <p className='flex text-[16px] text-[#3e337c] font-medium mt-3'><span className='font-bold block mr-2'>Color -</span>
+                                        {selectedVariantProduct?.color_name && <span> {capitalize(selectedVariantProduct?.color_name || '')}</span>}
+                                    </p>
+                                    <div className='mt-2 flex items-center gap-3'>
+                                        {product?.productVariants?.map((val, index) => {
+                                            return (
+                                                <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px] ' key={index} onClick={() => clickHandler(val)} style={{
+                                                    ...(selectedVariantProduct._id === val._id && {
+                                                        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+                                                    })
+                                                }}>
+                                                    <div className={`w-[26px] h-[26px] rounded-[4px] border-[#e2ddff] border-[1px]`} style={{ backgroundColor: val.color_code }} />
+                                                </button>
+                                            )
+                                        })}
+                                        {/* <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px] shadow-[0_2px_6px_1px_#3e337c30]'>
+                                            <div className='w-[26px] h-[26px] bg-[#fff] rounded-[4px] border-[#e2ddff] border-[1px]' />
+                                        </button>
+                                        <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px]'>
+                                            <div className='w-[26px] h-[26px] bg-[#a7a18f] rounded-[4px] border-[#e2ddff] border-[1px]' />
+                                        </button>
+                                        <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px]'>
+                                            <div className='w-[26px] h-[26px] bg-[#70483c] rounded-[4px] border-[#e2ddff] border-[1px]' />
+                                        </button>
+                                        <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px]'>
+                                            <div className='w-[26px] h-[26px] bg-[#4e6e81] rounded-[4px] border-[#e2ddff] border-[1px]' />
+                                        </button>
+                                        <button className='border-[#e2ddff] border-[1px] p-[6px] rounded-[4px]'>
+                                            <div className='w-[26px] h-[26px] bg-[#6D503A] rounded-[4px] border-[#e2ddff] border-[1px]' />
+                                        </button>
+                                    </div>
+                                    <p className='flex text-[16px] text-[#3e337c] font-medium mt-6'><span className='font-bold block mr-2'>Sweep Size -</span> 1200mm</p>
+                                    <div className='mt-2 flex gap-2'>
+                                        <button className='border-[#e2ddff] border-[1px] rounded-[6px] p-[6px_13px] text-[14px] text-[#3e337c] font-medium'>
+                                            900mm
+                                        </button>
+                                        <button className='border-[#e2ddff] border-[1px] rounded-[6px] p-[6px_13px] text-[14px] text-[#3e337c] font-medium'>
+                                            900mm
+                                        </button>
+                                        <button className='border-[#e2ddff] border-[1px] rounded-[6px] p-[6px_13px] text-[14px] text-[#3e337c] font-medium'>
+                                            900mm
+                                        </button>
+                                    </div>
+                                    <div className='flex justify-between items-center mt-6'>
+                                        <div className='sweep-main flex items-center'>
+                                            <p className='flex text-[16px] text-[#3e337c]  font-bold mr-2'>Sweep Size -</p>
+                                            <input type='number' defaultValue='1' className='border-[#e2ddff] border-[1px] rounded-3xl p-[8px_12px] w-[66px] outline-none text-center' />
+                                        </div>
+                                        <p className='font-bold text-[#3e337c]'>285 in stock</p> */}
+                                    </div>
+                                    <div className='flex gap-[20px] mt-[30px] sm:flex-nowrap flex-wrap'>
+                                        <button className='bg-[#3e337c] text-[#f8f6ff] rounded-[30px] p-[10px_20px] uppercase font-semibold w-full' onClick={() => goToCheckOut()}>Buy Now</button>
+                                        <button className='bg-[#3e337c] text-[#f8f6ff] rounded-[30px] p-[10px_20px] uppercase font-semibold w-full' onClick={() => addToCartHandler()}>Add to Cart</button>
+                                    </div>
+                                    {/* <div className='flex gap-[20px] mt-[10px] sm:flex-nowrap flex-wrap'>
                                 <button className='text-[#3e337c] rounded-[30px] p-[10px_20px] uppercase font-semibold w-full'>Add to compare</button>
                                 <button className='text-[#3e337c] rounded-[30px] p-[10px_20px] uppercase font-semibold w-full'>FAN BUYING GUIDE</button>
-                            </div>
-                            <div className='flex items-center gap-[32px] mt-8 flex-wrap'>
-                                <img src={Shipping} alt='Shipping' className='w-[100px]' />
-                                <img src={Warranty} alt='Warranty' className='w-[100px]' />
-                                <img src={Return} alt='Return' className='w-[100px]' />
-                                <img src={Delivery} alt='Delivery' className='w-[100px]' />
-                            </div>
-                            <div className='sweep-main flex items-center justify-between mt-[20px] sm:flex-nowrap flex-wrap gap-[10px]'>
-                                <input type='number' placeholder='Pincode' className='border-[#e2ddff] border-[1px] rounded-3xl p-[8px_12px] outline-none text-[14px]' />
-                                <button className='bg-[#3e337c] text-[#f8f6ff] rounded-[30px] p-[9px_20px] text-[14px]'>Check Delivery time</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className='bg-[#7b7492] py-[40px]'>
-                <h1 className='text-[#fff] font-semibold text-lg md:text-[22px] lg:text-[24px] text-center uppercase mb-[60px]'>Product information</h1>
-                <div className="max-w-[1300px] mx-auto px-[20px]">
-                    <div className='grid lg:grid-cols-2 gap-[30px]'>
-                        <div className='overflow-auto'>
-                            <h1 className='text-[#fff] font-medium text-[18px]'>Technical Details</h1>
-                            <div className='mt-[20px]'>
-                                <table className='w-full'>
-                                    {TechnicalDetail.map((data, i) =>
-                                        <tr key={i}>
-                                            <th className='bg-[#827e9d] text-[#fff] font-normal border-y-[#938ea1] border-y-[1px] p-[7px_14px_6px] text-left 2xl:text-[14px] text-[12px]'>{data.head}</th>
-                                            <td className='border-y-[#938ea1] text-[#fff] font-normal border-y-[1px] p-[7px_14px_6px] text-left 2xl:text-[14px] text-[12px]'>{data.name}</td>
-                                        </tr>
-                                    )}
-                                </table>
-                            </div>
-                        </div>
-                        <div className='overflow-auto'>
-                            <h1 className='text-[#fff] font-medium text-[18px]'>Additional Information</h1>
-                            <div className='mt-[20px]'>
-                                <table className='w-full'>
-                                    {AdditionalDetail.map((data, i) =>
-                                        <tr key={i}>
-                                            <th className='bg-[#827e9d] text-[#fff] font-normal border-y-[#938ea1] border-y-[1px] p-[7px_14px_6px] text-left 2xl:text-[14px] text-[12px]'>{data.head}</th>
-                                            <td className='border-y-[#938ea1] text-[#fff] font-normal border-y-[1px] p-[7px_14px_6px] text-left 2xl:text-[14px] text-[12px]'>{data.name}</td>
-                                        </tr>
-                                    )}
-                                </table>
+                            </div> */}
+                                    <div className='flex items-center gap-[32px] mt-8 flex-wrap'>
+                                        <img src={Shipping} alt='Shipping' className='w-[100px]' />
+                                        <img src={Warranty} alt='Warranty' className='w-[100px]' />
+                                        <img src={Return} alt='Return' className='w-[100px]' />
+                                        <img src={Delivery} alt='Delivery' className='w-[100px]' />
+                                    </div>
+                                </div>
+                                {/* <div className='sweep-main flex items-center justify-between mt-[20px] sm:flex-nowrap flex-wrap gap-[10px]'>
+                                    <input type='number' placeholder='Pincode' className='border-[#e2ddff] border-[1px] rounded-3xl p-[8px_12px] outline-none text-[14px]' />
+                                    <button className='bg-[#3e337c] text-[#f8f6ff] rounded-[30px] p-[9px_20px] text-[14px]'>Check Delivery time</button>
+                                </div> */}
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            {/* <div className=' bg-[#7b7492]'>
+                    <div className='bg-[#7b7492] py-[40px]'>
+                        <h1 className='text-[#fff] font-semibold text-lg md:text-[22px] lg:text-[24px] text-center uppercase mb-[60px]'>Product information</h1>
+                        <div className="max-w-[1300px] mx-auto px-[20px]">
+                            <div className='grid lg:grid-cols-2 gap-[30px]'>
+                                <div className='overflow-auto'>
+                                    <h1 className='text-[#fff] font-medium text-[18px]'>Technical Details</h1>
+                                    <div className='mt-[20px]'>
+                                        <table className='w-full'>
+                                            {technicalInformation.map((item, index) =>
+                                                <tr key={index}>
+                                                    <th className='max-w-[50px] bg-[#827e9d] text-[#fff] font-normal border-y-[#938ea1] border-y-[1px] p-[7px_14px_6px] text-left 2xl:text-[14px] text-[12px]'>{item.title}</th>
+                                                    <td className='border-y-[#938ea1] text-[#fff] font-normal border-y-[1px] p-[7px_14px_6px] text-left 2xl:text-[14px] text-[12px]' >{item.details}</td>
+                                                </tr>
+                                            )}
+                                        </table>
+                                    </div>
+                                </div>
+                                <div className='overflow-auto'>
+                                    <h1 className='text-[#fff] font-medium text-[18px]'>Additional Information</h1>
+                                    <div className='mt-[20px]'>
+                                        <table className='w-full'>
+                                            {additionalInformation.map((item, index) =>
+                                                <tr key={index}>
+                                                    <th className='max-w-[50px] bg-[#827e9d] text-[#fff] font-normal border-y-[#938ea1] border-y-[1px] p-[7px_14px_6px] text-left 2xl:text-[14px] text-[12px]'>{item.title}</th>
+                                                    <td className='border-y-[#938ea1] text-[#fff] font-normal border-y-[1px] p-[7px_14px_6px] text-left 2xl:text-[14px] text-[12px]' >{item.details}</td>
+                                                </tr>
+                                            )}
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* <div className=' bg-[#7b7492]'>
                 <div className="max-w-[1300px] mx-auto px-[20px] py-[60px]">
                     <h1 className='text-[#fff] font-semibold text-lg md:text-[22px] lg:text-[24px] text-center'>WHY SHOULD YOU BUY FROM THE MDN WEBSITE ?</h1>
                     <div className='mt-[60px]'>
@@ -476,10 +435,13 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div> */}
-            <ReviewadRatings />
-            <Footer />
-        </div>
+                    <ReviewadRatings />
+                    <Footer />
+                </div >
+            }
+        </>
+
     )
 }
 
-export default ProductDetails
+export default WithAppContext(ProductDetails)

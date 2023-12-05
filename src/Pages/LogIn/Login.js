@@ -8,10 +8,12 @@ import { AuthAPI } from "../../API";
 
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import WithAppContext from "../../Helper/Context/app.ContextHoc";
 
-const Login = () => {
+const Login = ({context}) => {
   //hooks
   const navigate = useNavigate();
+  const {updateAuthenticationStatus} = context
 
   //state
   const [create, setCreate] = useState(true);
@@ -78,7 +80,8 @@ const Login = () => {
                     const { token, user } = response.data
                     console.log("response login==>", response.data)
                     localStorage.setItem("token", token);
-                    localStorage.setItem("user", user);
+                    localStorage.setItem("user", JSON.stringify(user));
+                    updateAuthenticationStatus()
                     navigate("/")
                     toast.success("Successfully logged in...");
                   }
@@ -190,4 +193,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default WithAppContext(Login);

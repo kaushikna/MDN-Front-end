@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { BsSortUp } from 'react-icons/bs';
 import { Menu, Transition } from '@headlessui/react';
 import MordenFan from "../../Assets/Images/SliderImages/mordenFan.webp";
@@ -26,67 +26,15 @@ import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import ReviewadRatings from '../../Components/CeilingFans/ReviewadRatings';
 import { MdEdit } from 'react-icons/md';
+import { AuthAPI } from '../../API';
+import toast, { useToaster } from 'react-hot-toast';
+import WithAppContext from '../../Helper/Context/app.ContextHoc';
+import { Link, useNavigate } from 'react-router-dom';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const CardData = [
-    {
-        img: FanProduct,
-        name: 'Aris Ceiling Fan',
-        color: 'Color:',
-        wprice: '₹7,790',
-        price: '₹5,120',
-        off: '-34%',
-        btn: 'Add to Cart'
-    },
-    {
-        img: FanProduct2,
-        name: 'Studio Smart+ Ceiling Fan',
-        color: 'Color:',
-        wprice: '₹8,490',
-        price: '₹5,790',
-        off: '-32%',
-        btn: 'Add to Cart'
-    },
-    {
-        img: FanProduct3,
-        name: 'GalleryItem-name',
-        color: 'Color:',
-        wprice: '₹8,860 ',
-        price: '₹4,990',
-        off: '-44%',
-        btn: 'Add to Cart'
-    },
-    {
-        img: FanProduct4,
-        name: 'Studio + Ceiling Fan',
-        color: 'Color:',
-        wprice: '₹7,790',
-        price: '₹5,120',
-        off: '-34%',
-        btn: 'Add to Cart'
-    },
-    {
-        img: FanProduct5,
-        name: 'Erica Ceiling Fan',
-        color: 'Color:',
-        wprice: '₹7,290',
-        price: '₹4,599',
-        off: '-37%',
-        btn: 'Add to Cart'
-    },
-    {
-        img: FanProduct6,
-        name: 'Renesa + Ceiling Fan',
-        color: 'Color:',
-        wprice: '₹7,490',
-        price: '₹4,999',
-        off: '-33%',
-        btn: 'Add to Cart'
-    },
-]
 const ChooseData = [
     {
         img: saves,
@@ -113,9 +61,43 @@ const ChooseData = [
         name: 'LONGER BLADE SPAN'
     },
 ]
+const imageURL = process.env.REACT_APP_IMAGE_URL;
 
+const CeilingFans = ({ context }) => {
+    const [allProduct, setAllProduct] = useState([])
+    const { addToCart } = context
+    const navigate = useNavigate();
 
-const CeilingFans = () => {
+    const getAllProduct = async () => {
+        try {
+            const response = await AuthAPI("/product/", {
+                method: "GET",
+            });
+            if (response?.status === 201) {
+                toast.success(response.message);
+            } else {
+                toast.error("Something went wrong..");
+            }
+            setAllProduct(response.data)
+        } catch (error) {
+            toast.error("Something went to wrong...");
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        getAllProduct()
+    }, [])
+
+    const handleCardClick = async (origin, val, event) => {
+        if (origin.toLowerCase() === 'button') {
+            addToCart({...val, selectedVariant: val.productVariants?.[0]})
+            event.stopPropagation();
+        } else {
+            navigate(`/product-details/${val._id}`)
+        }
+    }
+
 
     return (
         <div>
@@ -137,7 +119,6 @@ const CeilingFans = () => {
                                     Sort By
                                 </Menu.Button>
                             </div>
-
                             <Transition
                                 as={Fragment}
                                 enter="transition ease-out duration-100"
@@ -194,36 +175,34 @@ const CeilingFans = () => {
                         </Menu>
                     </div>
                     <div className='grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-[20px] sm:max-w-none max-w-[400px] mx-auto'>
-                        {CardData.map((val, key) =>
-                            <a href='/product-details'>
-                                <div key={key} className='bg-[#c6c0db] rounded-[20px]'>
-                                    <div>
-                                        <img src={val.img} alt='FanProduct' className='border-b-[#7b7492] border-b-[2px] rounded-[20px_20px_0_0] w-full object-cover' />
-                                        <div className='2xl:px-[30px] px-[12px]'>
-                                            <h2 className='text-[#3e337c] xl:text-[20px] text-[18px] font-bold pt-3 whitespace-nowrap overflow-hidden text-ellipsis'>{val.name}</h2>
-                                            <p className='text-[14px] text-[#3e337c] font-medium mt-3'>{val.color}</p>
-                                            <div className='mt-2 flex items-center gap-3'>
-                                                <div className='w-[20px] h-[20px] bg-[#000] rounded-[4px]' />
-                                                <div className='w-[20px] h-[20px] bg-[#fff] rounded-[4px]' />
-                                                <div className='w-[20px] h-[20px] bg-[#a7a18f] rounded-[4px]' />
-                                                <div className='w-[20px] h-[20px] bg-[#70483c] rounded-[4px]' />
-                                                <div className='w-[20px] h-[20px] bg-[#4e6e81] rounded-[4px]' />
-                                                <div className='w-[20px] h-[20px] bg-[#6D503A] rounded-[4px]' />
-                                            </div>
-                                            <div className='mt-[40px] pb-6 flex justify-between items-center'>
-                                                <div>
-                                                    <p className='line-through text-[#3e337c] text-[14px]'>{val.wprice}</p>
-                                                    <h1 className='text-[#fff] font-semibold xl:text-[20px] text-[18px]'>{val.price} <span className='text-[18px] text-[#3e337c]'>{val.off}</span></h1>
-                                                </div>
-                                                <div className='flex flex-col gap-2'>
-                                                    <button class="bg-[#3e337c] text-[#f8f6ff] rounded-[30px] xl:p-[8px_20px] p-[8px_14px] xl:text-[14px] text-[12px] flex items-center gap-1 justify-center"><MdEdit className='text-[18px]' /> Edit</button>
-                                                    <button class="bg-[#3e337c] text-[#f8f6ff] rounded-[30px] xl:p-[8px_20px] p-[8px_14px] xl:text-[14px] text-[12px]">{val.btn}</button>
-                                                </div>
-                                            </div>
+
+                        {allProduct.map((val, index) =>
+                            <div className='bg-[#c6c0db] rounded-[20px] cursor-pointer' key={index} onClick={(e) => handleCardClick('card', val, e)} >
+                                <img src={val?.productVariants?.[0]?.images?.[0] ? `${imageURL}${val?.productVariants?.[0]?.images?.[0]}` : FanProduct} alt='FanProduct' className='border-b-[#7b7492] border-b-[2px] h-3/5 rounded-[20px_20px_0_0] w-full object-scale-down cursor-pointer' onClick={() => navigate(`/product-details/${val._id}`)} />
+                                <div className='2xl:px-[30px] px-[12px]' >
+                                    <h2 className='text-[#3e337c] xl:text-[20px] text-[18px] font-bold pt-3 whitespace-nowrap overflow-hidden text-ellipsis'>{val.name}</h2>
+                                    <p className='text-[14px] text-[#3e337c] font-medium mt-3'>Colors:</p>
+                                    <div className='mt-2 flex items-center gap-3'>
+                                        {val?.productVariants?.map((ele, ind) => {
+                                            return (
+                                                <button className='p-[2px] rounded-[4px]' key={ind} >
+                                                    <div className={`w-[26px] h-[26px] rounded-[4px]`} style={{ backgroundColor: ele.color_code }} />
+                                                </button>
+                                            )
+                                        })}
+                                    </div>
+                                    <div className='mt-[40px] pb-6 flex justify-between items-center'>
+                                        <div>
+                                            <p className='line-through text-[#3e337c] text-[14px]'>₹7,490</p>
+                                            <h1 className='text-[#fff] font-semibold xl:text-[20px] text-[18px]'>₹{val.price} <span className='text-[18px] text-[#3e337c]'>-33%</span></h1>
+                                        </div>
+                                        <div className='flex flex-col gap-2 z-50'>
+                                            {/* <button className="bg-[#3e337c] text-[#f8f6ff] rounded-[30px] xl:p-[8px_20px] p-[8px_14px] xl:text-[14px] text-[12px] flex items-center gap-1 justify-center"><MdEdit className='text-[18px]' /> Edit</button> */}
+                                            <button className="bg-[#3e337c] text-[#f8f6ff] rounded-[30px] xl:p-[8px_20px] p-[8px_14px] xl:text-[14px] text-[12px]" onClick={(e) => handleCardClick('button', val, e)}>Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -285,8 +264,8 @@ const CeilingFans = () => {
                     <div className="max-w-[1300px] mx-auto px-[20px] py-[60px]">
                         <h1 className='text-[#3e337c] font-semibold text-lg md:text-[22px] lg:text-[24px] text-center'>WHY SHOULD YOU CHOOSE US ?</h1>
                         <div className='flex justify-center flex-wrap gap-[40px] gap-y-[60px] mt-[70px]'>
-                            {ChooseData.map((data, key) =>
-                                <div className='md:w-[20%] sm:w-[25%] w-[100%]' key={key}>
+                            {ChooseData.map((data, index) =>
+                                <div className='md:w-[20%] sm:w-[25%] w-[100%]' key={index}>
                                     <div className='flex justify-center'>
                                         <img src={data.img} alt='saves' className='lg:max-w-none max-w-[100px] lg:w-auto w-full' />
                                     </div>
@@ -303,4 +282,4 @@ const CeilingFans = () => {
     )
 }
 
-export default CeilingFans
+export default WithAppContext(CeilingFans)

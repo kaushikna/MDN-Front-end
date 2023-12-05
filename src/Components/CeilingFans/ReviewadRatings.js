@@ -73,8 +73,8 @@ const ReviewadRatings = () => {
                 </div>
                 <div className='mt-[40px]'>
                     <Slider {...settings}>
-                        {ReviewData.map((data, key) =>
-                            <div className='bg-white rounded-md lg:p-[40px_30px] p-[30px_15px]'>
+                        {ReviewData.map((data, i) =>
+                            <div className='bg-white rounded-md lg:p-[40px_30px] p-[30px_15px]' key={i}>
                                 <div className='flex justify-center'>
                                     <img src={data.img} alt='User1' className='lg:w-[140px] w-[120px] lg:h-[140px] h-[120px] rounded-full border-[4px] border-[#0000002b]' />
                                 </div>
