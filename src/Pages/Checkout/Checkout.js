@@ -260,7 +260,7 @@ const Checkout = ({ context }) => {
                                             </div>
                                             <div className='flex items-center gap-2 mt-[30px]'>
                                                 <input type='checkbox' onChange={(e) => setIsChecked(e.target.checked)} id='check' className='cursor-pointer w-[18px] h-[18px]' />
-                                                <label htmlFor='check' className='text-[#fff] text-[14px] font-normal select-none cursor-pointer' name="editAddress">By clicking this you allow communication from MDN technologies</label>
+                                                <label htmlFor='check' className='text-[#fff] text-[14px] font-normal select-none cursor-pointer' name="editAddress">By clicking this you allow communication from MDN electronics</label>
                                             </div>
                                             <button className='rounded-full inline-flex font-semibold text-[14px] items-center justify-center p-[10px_40px] bg-[#c6c0db] text-[#3e337c] mt-[40px]'>
                                                 Deliver here
@@ -287,7 +287,7 @@ const Checkout = ({ context }) => {
                                     </div>
                                     <div className='flex items-center gap-2 mt-[20px]'>
                                         <input type='checkbox' id='check1' className='cursor-pointer w-[18px] h-[18px]' onChange={(e) => setIsPayChecked(e.target.checked)} />
-                                        <label htmlFor='check1' className='text-[#3e337c] text-[14px] font-medium select-none cursor-pointer'>By clicking this you allow communication from MDN technologies</label>
+                                        <label htmlFor='check1' className='text-[#3e337c] text-[14px] font-medium select-none cursor-pointer'>By clicking this you allow communication from MDN electronics</label>
                                     </div>
                                 </>
                             }

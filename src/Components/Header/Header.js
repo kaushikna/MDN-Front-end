@@ -44,21 +44,20 @@ const Header = ({ context }) => {
                         <img className='xl:max-w-[80px] max-w-[60px]' src={Logo} alt='logo' />
                         <div className='lg:flex hidden xl:gap-[24px] gap-[14px]'>
                             <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Home</a>
-                            <a href='/ceiling-fans' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Fans</a>
+                            <a href='/ceiling-fans' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Product</a>
                             {/* <div className='p-[28px_0] group'>
                             <div className='xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Product Features</div>
                             <div className='absolute top-[83px] left-0 w-full bg-white hidden group-hover:block z-[1]'>
                                 <ProductModel />
                             </div>
                         </div> */}
-                            <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Service and Warranty</a>
-                            <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Testimonials</a>
-                            
+                            {/* <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Service and Warranty</a>
+                            <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Testimonials</a> */}
+
                             {isAuthenticated && <a href='/add-product' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Add Product</a>}
                             {isAuthenticated && <a href='/' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Order</a>}
                             {isAuthenticated && <a href='/order-manage' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Order Manage</a>}
-                            <a href='/customer-inquiry' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Customer Inqury</a>
-
+                            {isAuthenticated && <a href='/customer-inquiry' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Customer Inqury</a>}
                             <a href='/support' className='p-[28px_0] xl:text-[14px] text-[13px] font-semibold text-[#3e337c] trans'>Support</a>
                         </div>
                         <div className='flex xl:gap-[20px] gap-[12px] items-center'>
@@ -123,9 +122,9 @@ const Header = ({ context }) => {
                                                     <p className='text-[#838383] text-[14px]'>₹{handleSubTotal()}</p>
                                                 </div>
                                                 {
-                                                    cartData?.length ? 
-                                                    <a href='/checkout' type="submit" className="h-10 items-center justify-center font-semibold hover:underline w-full bg-[#E5E5E5] border border-transparent shadow-sm py-2 px-4 text-sm rounded-md text-black mt-[20px] flex">Go to Checkout</a>
-                                                    : ''
+                                                    cartData?.length ?
+                                                        <a href='/checkout' type="submit" className="h-10 items-center justify-center font-semibold hover:underline w-full bg-[#E5E5E5] border border-transparent shadow-sm py-2 px-4 text-sm rounded-md text-black mt-[20px] flex">Go to Checkout</a>
+                                                        : ''
                                                 }
                                             </div>
                                         </div>

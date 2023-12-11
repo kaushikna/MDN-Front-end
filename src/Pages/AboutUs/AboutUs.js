@@ -82,7 +82,7 @@ const AboutUs = () => {
                     <div className='max-w-[1300px] mx-auto px-[20px]'>
                         <div className='grid sm:grid-cols-2 gap-[30px] p-[50px_0]'>
                             <div>
-                                <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] mb-[24px] leading-[28px] '>MDN Technologies origin story begins with two IIT-Bombay graduates:Manoj Meena and Sibabrata Das, and some serious hi-tech.</p>
+                                <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] mb-[24px] leading-[28px] '>MDN electronics origin story begins with two IIT-Bombay graduates:Manoj Meena and Sibabrata Das, and some serious hi-tech.</p>
                                 <p className='text-[#3e337c] font-medium sm:text-[16px] text-[14px] leading-[28px] '>The first few years were a blur of high-end technical products that went to prestigious clients like the Defense Research and Development Organisation, Bhabha Atomic Research Center and IIT-Bombay.</p>
                             </div>
                             <div>

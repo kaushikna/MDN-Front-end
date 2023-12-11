@@ -114,7 +114,7 @@ const OrderManage = () => {
                             <tbody>
                                 <tr className='group cursor-pointer'>
                                     <td className='text-left text-[#3e337c] p-[8px_20px] border-y-[#3e337c] border-y-[1px] font-medium'>738563456</td>
-                                    <td className='text-left text-[#3e337c] p-[8px_20px] border-y-[#3e337c] border-y-[1px] font-medium whitespace-nowrap	'>Automberg Fan</td>
+                                    <td className='text-left text-[#3e337c] p-[8px_20px] border-y-[#3e337c] border-y-[1px] font-medium whitespace-nowrap	'>MDN Fan</td>
                                     <td className='text-left text-[#3e337c] p-[8px_20px] border-y-[#3e337c] border-y-[1px] font-medium whitespace-nowrap	'>test123@gmail.com</td>
                                     <td className='text-left text-[#3e337c] p-[8px_20px] border-y-[#3e337c] border-y-[1px] font-medium'>
                                         <div className='flex gap-1'>

@@ -3,10 +3,10 @@ import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import FanImage from "../../Assets/Images/SliderImages/fanImage.webp";
-import Mixer from "../../Assets/Images/SliderImages/mixer.webp";
-// import DoorLock from "../../Assets/Images/SliderImages/doorlock.webp";
-import MordenFan from "../../Assets/Images/SliderImages/mordenFan.webp";
+import Slider1 from "../../Assets/Images/SliderImages/slider1.jpg";
+import Slider2 from "../../Assets/Images/SliderImages/slider2.jpg";
+import Slider3 from "../../Assets/Images/SliderImages/slider3.jpg";
+import Slider4 from "../../Assets/Images/SliderImages/slider4.jpg";
 import Fan from "../../Assets/Images/ceiling-fan.png";
 import MixerGrinder from "../../Assets/Images/blender.png";
 import Lock from "../../Assets/Images/smart-door.png";
@@ -19,10 +19,10 @@ import homedesk2 from "../../Assets/Images/FansImages/homedesk2.jpg";
 import Slider from "react-slick";
 
 const ImageData = [
-    { img: FanImage },
-    { img: Mixer },
-    // { img: DoorLock },
-    { img: MordenFan },
+    { img: Slider1 },
+    { img: Slider2 },
+    { img: Slider3 },
+    { img: Slider4 },
 ];
 
 const Home = () => {
@@ -32,8 +32,8 @@ const Home = () => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        // autoplay: true,
-        // autoplaySpeed: 2000
+        autoplay: true,
+        autoplaySpeed: 2000
     };
     return (
         <div>
@@ -41,7 +41,7 @@ const Home = () => {
             <Slider {...settings}>
                 {ImageData.map((data, i) => (
                     <div className="outline-none">
-                        <img src={data.img} alt="FanImage" />
+                        <img src={data.img} alt="FanImage"  />
                     </div>
                 ))}
             </Slider>
@@ -91,9 +91,11 @@ const Home = () => {
                             focus on the things that really matter. Things like the latest
                             technology, innovation and sustainability.
                         </p>
-                        <button className="bg-[#3e337c] text-[#f8f6ff] rounded-[30px] p-[8px_20px] mt-[20px]">
+                        <div className="flex justify-center">
+                        <a href="/about" className="bg-[#3e337c] text-[#f8f6ff] rounded-[30px] p-[8px_20px] mt-[20px] block max-w-[140px] w-full">
                             Know more
-                        </button>
+                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,14 +122,16 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="flex md:flex-row flex-col items-end justify-center lg:gap-5 pb-7">
-                    <div className="md:w-1/2 flex flex-col md:flex-row items-center md:items-end order-2 md:order-1">
-                        <img src={fan4} alt="" className="md:w-[70%]" />
-                        <button className="bg-[#3e337c] text-[#f8f6ff] rounded-[30px] p-[8px_20px] mt-[20px]">
+                    <div className="md:w-1/2 order-2 md:order-1">
+                        <img src={fan4} alt="" />
+                        <div className="flex justify-end">
+                        <a href="/product-details" className="bg-[#3e337c] text-[#f8f6ff] rounded-[30px] p-[8px_20px] mt-[20px]">
                             Know more
-                        </button>
+                        </a>
+                        </div>
                     </div>
                     <div className="md:w-1/2 order-1 md:order-2">
-                        <img src={fan5} alt="" />
+                        {/* <img src={fan5} alt="" /> */}
                         <div className="bg-[#c6c0db] rounded-tl-[80px]">
                             <div className="md:max-w-[450px] p-[40px]">
                                 <h3 className="font-semibold text-base md:text-[18px] lg:text-[22px] text-[#3e337c] mb-2">
@@ -144,7 +148,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="flex md:flex-row flex-col items-center">
+                <div className="flex md:flex-row flex-col items-center">
                     <div className="bg-[#c6c0db] w-full md:w-1/2 rounded-tr-[80px]">
                         <div className="md:max-w-[420px] ml-auto p-[40px]">
                             <h3 className="text-base md:text-[18px] lg:text-[22px] text-[#3e337c] font-semibold">
@@ -160,8 +164,8 @@ const Home = () => {
                     <div>
                         <img src={homedesk} alt="" className="pt-[20px] md:pt-[100px] lg:pt-[24px]" />
                     </div>
-                </div> */}
-                {/* <div className="flex md:flex-row flex-col items-end justify-center gap3 lg:gap-5">
+                </div>
+                <div className="flex md:flex-row flex-col items-end justify-center gap3 lg:gap-5">
                     <div className="md:w-1/2 pb-[60px]">
                         <img src={homedesk2} alt="" />
                     </div>
@@ -180,7 +184,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                </div> */}
+                </div>
             </div>
             <Footer />
         </div>

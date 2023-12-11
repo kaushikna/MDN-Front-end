@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
             <Header />
             <div className='p-[40px_0] max-w-[1300px] mx-auto px-[20px]'>
                 <h2 className='text-[#3e337c] sm:text-[28px] text-[20px] text-center font-semibold'>PRIVACY POLICY</h2>
-                <p className='text-[#3e337c] sm:text-[14px] text-[12px] mt-[30px]'>Thank you for visiting website <span className='font-bold'>(“Website”)</span> / mobile application <span className='font-bold'>(“App”)</span> of MDN Technologies Private Limited <span className='font-bold'>(“MDN”)</span>. Users, customers, visitors and vendors are collectively referred to as <span className='font-bold'>“you”</span> or <span className='font-bold'>“your”</span>.</p>
+                <p className='text-[#3e337c] sm:text-[14px] text-[12px] mt-[30px]'>Thank you for visiting website <span className='font-bold'>(“Website”)</span> / mobile application <span className='font-bold'>(“App”)</span> of MDN electronics Private Limited <span className='font-bold'>(“MDN”)</span>. Users, customers, visitors and vendors are collectively referred to as <span className='font-bold'>“you”</span> or <span className='font-bold'>“your”</span>.</p>
                 <p className='text-[#3e337c] sm:text-[14px] text-[12px] mt-[10px]'>By accessing or using the Website / App, or by otherwise giving us your information, you confirm that you have the capacity to enter into a legally binding contract under the Indian Contract Act, 1872, and have read, understood, and agree with the privacy practices described in this document, read with the Terms <span className='font-bold'>("Privacy Policy”)</span> and the collection, storage, processing, use, sharing, disclosure, or transfer of your personal information in accordance with the Privacy Policy. Please go through this Privacy Policy in detail and contact us if you have any questions or require any clarifications. If you do not agree with any of the terms and conditions of this Privacy Policy, please do not proceed further to use this Website / App.</p>
                 <p className='text-[#3e337c] sm:text-[14px] text-[12px] mt-[10px]'>This policy describes the manner in which MDN, owner and operator of the Website / App collects, uses, discloses, or otherwise processes your information when you visit the Website / App. We reserve the right to change, modify, add or delete portions of this Privacy Policy, at our sole discretion, at any time. While the Company will periodically inform you of this Privacy Policy or any material changes to this Privacy Policy that the Company makes, via email, you are responsible to check this page regularly to make note of any changes. Your continued use of the Website / App means that you accept and agree to the changes in the Privacy Policy.</p>
                 <p className='text-[#3e337c] sm:text-[14px] text-[12px] mt-[10px]'>If you are accessing or using our Website / App from an overseas location, you do so at your own risk, and shall be solely liable for compliance with any applicable local laws.</p>
@@ -80,16 +80,16 @@ const PrivacyPolicy = () => {
                     <li><span className='text-[#3e337c] sm:text-[14px] text-[12px] mr-3'>(d)</span>genetic data, biometric data processed for the purpose of uniquely identifying a natural person.</li>
                 </ol>
                 <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>Other than the content uploaded by our employees on our behalf, we are not liable for any information posted on those sites. we are only accountable for how it uses the personal information it receives from these sites.</p>
-                <h3 className='text-[16px] font-semibold text-[#3e337c] mt-[30px]'>Grievance redressal and contact us</h3>
+                <h3 className='text-[16px] font-semibold text-[#3e337c] mt-[30px]'>Help Support and contact us</h3>
                 <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>If you have any queries about our practices or this Privacy Policy, please contact us as follows:</p>
                 <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>Name of Grievance Officer - Kiran Bedi,
-                    MDN Technologies Private Limited</p>
+                    MDN electronics Private Limited</p>
                 <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>Postal Mailing Address:
                     <span className='italic'> Office No. 1205, 12th Floor, Rupa Solitaire, Millennium Business Park,Thane-Belapur Road, Mahape Navi Mumbai 400710</span></p>
                 <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>Contact no:-
-                    844 844 9442</p>
+                840 108 5849</p>
                 <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>Email:
-                    support@MDN.com</p>
+                mdneletronics@gmail.com</p>
                 <h3 className='text-[16px] font-semibold text-[#3e337c] mt-[30px]'>Miscellaneous</h3>
                 <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>You agree and undertake to indemnify us in any suit or dispute by any third party arising out of disclosure of information by you to third parties either through our Website/App or otherwise and your use and access of websites, applications and resources of third parties.</p>
                 <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>Each clause of this Privacy Policy shall be and remain separate from and independent of and severable from all and any other clauses herein, except where otherwise expressly indicated or indicated by the context of the Privacy Policy. The decision or declaration that one or more clauses are null and void shall have no effect on remaining clauses of this Privacy Policy.</p>
@@ -100,8 +100,8 @@ const PrivacyPolicy = () => {
                 <div className='max-w-[1300px] mx-auto px-[20px]'>
                     <h2 className='text-[#3e337c] sm:text-[28px] text-[20px] font-semibold'>PRIVACY CONTACT INFORMATION</h2>
                     <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>If you have any questions, concerns, or comments about our privacy policy you may contact us using the information below:</p>
-                    <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>By E-mail: <span className='font-bold'>support@MDN.com</span></p>
-                    <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>By Phone: Contact Number: <span className='font-bold'>8448449442</span></p>
+                    <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>By E-mail: <span className='font-bold'>mdneletronics@gmail.com</span></p>
+                    <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>By Phone: Contact Number: <span className='font-bold'>8401085849</span></p>
                     <p className='sm:text-[14px] text-[12px] text-[#3e337c] mt-[10px]'>We reserve the right to make changes to this policy. Any changes to this policy will be posted.</p>
                 </div>
             </div>

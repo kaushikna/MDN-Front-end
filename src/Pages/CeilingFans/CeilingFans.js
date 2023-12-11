@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { BsSortUp } from 'react-icons/bs';
 import { Menu, Transition } from '@headlessui/react';
-import MordenFan from "../../Assets/Images/SliderImages/mordenFan.webp";
+import MordenFan from "../../Assets/Images/SliderImages/slider2.jpg";
 import FanProduct from '../../Assets/Images/ProductImages/fan-product.png';
 import FanProduct2 from '../../Assets/Images/ProductImages/fan-product2.png';
 import FanProduct3 from '../../Assets/Images/ProductImages/fan-product3.png';
@@ -165,7 +165,7 @@ const CeilingFans = ({ context }) => {
                                                         'block px-4 py-2 text-sm'
                                                     )}
                                                 >
-                                                    Price: Low to High
+                                                    Price: Low to High 
                                                 </a>
                                             )}
                                         </Menu.Item>

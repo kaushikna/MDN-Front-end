@@ -17,7 +17,7 @@ const Support = () => {
                     <button onClick={() => setTab('Service And Installation Request')} className={tab === 'Service And Installation Request' ? 'text-[#3e337c] border-[#3e337c] font-semibold text-[14px] border-[2px] md:border-b-transparent md:rounded-[8px_8px_0_0] rounded-lg lg:p-[10px_16px] p-[10px_8px] sm:w-auto w-full' : 'text-[14px] text-[#3e337c] md:border-b-[#3e337c] border-[#3e337c] md:border-0 border-[1px] md:border-b-[2px] md:rounded-[8px_8px_0_0] rounded-lg lg:p-[10px_16px] p-[10px_8px] sm:w-auto w-full'}>Service And Installation Request</button>
                     <button onClick={() => setTab('Register Warranty Card')} className={tab === 'Register Warranty Card' ? 'text-[#3e337c] border-[#3e337c] font-semibold text-[14px] border-[2px] md:border-b-transparent md:rounded-[8px_8px_0_0] rounded-lg lg:p-[10px_16px] p-[10px_8px] sm:w-auto w-full' : 'text-[14px] text-[#3e337c] md:border-b-[#3e337c] border-[#3e337c] md:border-0 border-[1px] md:border-b-[2px] md:rounded-[8px_8px_0_0] rounded-lg lg:p-[10px_16px] p-[10px_8px] sm:w-auto w-full'}>Register Warranty Card</button>
                     <button onClick={() => setTab('Track Complaint')} className={tab === 'Track Complaint' ? 'text-[#3e337c] border-[#3e337c] font-semibold text-[14px] border-[2px] md:border-b-transparent md:rounded-[8px_8px_0_0] rounded-lg lg:p-[10px_16px] p-[10px_8px] sm:w-auto w-full' : 'text-[14px] text-[#3e337c] md:border-b-[#3e337c] border-[#3e337c] md:border-0 border-[1px] md:border-b-[2px] md:rounded-[8px_8px_0_0] rounded-lg lg:p-[10px_16px] p-[10px_8px] sm:w-auto w-full'}>Track Complaint</button>
-                    <button onClick={() => setTab('Grievance Redressal')} className={tab === 'Grievance Redressal' ? 'text-[#3e337c] border-[#3e337c] font-semibold text-[14px] border-[2px] md:border-b-transparent md:rounded-[8px_8px_0_0] rounded-lg lg:p-[10px_16px] p-[10px_8px] sm:w-auto w-full' : 'text-[14px] text-[#3e337c] md:border-b-[#3e337c] border-[#3e337c] md:border-0 border-[1px] md:border-b-[2px] md:rounded-[8px_8px_0_0] rounded-lg lg:p-[10px_16px] p-[10px_8px] sm:w-auto w-full'}>Grievance Redressal</button>
+                    <button onClick={() => setTab('Help Support')} className={tab === 'Help Support' ? 'text-[#3e337c] border-[#3e337c] font-semibold text-[14px] border-[2px] md:border-b-transparent md:rounded-[8px_8px_0_0] rounded-lg lg:p-[10px_16px] p-[10px_8px] sm:w-auto w-full' : 'text-[14px] text-[#3e337c] md:border-b-[#3e337c] border-[#3e337c] md:border-0 border-[1px] md:border-b-[2px] md:rounded-[8px_8px_0_0] rounded-lg lg:p-[10px_16px] p-[10px_8px] sm:w-auto w-full'}>Help Support</button>
                 </div>
                 <div className='mb-[60px]'>
                     {tab === 'Service And Installation Request' &&
@@ -29,7 +29,7 @@ const Support = () => {
                     {tab === 'Track Complaint' &&
                         <TrackComplaint />
                     }
-                    {tab === 'Grievance Redressal' &&
+                    {tab === 'Help Support' &&
                         <GrievanceRedressal />
                     }
                 </div>
